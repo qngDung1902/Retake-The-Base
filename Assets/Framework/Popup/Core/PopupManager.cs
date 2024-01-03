@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -27,13 +26,14 @@ namespace PopupSystem
         public Ease fadeOutTweenType;
         public float fadeTweenTime;
         public float transparentAmount;
+
 #if UNITY_EDITOR
         [ContextMenu("LoadPopupPrefabs")]
         void LoadPopupPrefabs()
         {
             var lstPrefabs = new List<BasePopup>();
-            var lstNames = System.IO.Directory.GetFiles($"{popupPath}", "*.prefab", System.IO.SearchOption.AllDirectories);
-
+            var lstNames = System.IO.Directory.GetFiles($"{popupPath}",
+                "*.prefab", System.IO.SearchOption.AllDirectories);
             foreach (var itName in lstNames)
             {
                 var obj = UnityEditor.AssetDatabase.LoadAssetAtPath<BasePopup>($"{itName}");
@@ -45,6 +45,7 @@ namespace PopupSystem
             UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 #endif
+
         public BasePopup[] prefabs;
         public Image transparent;
         private Transform mTransparentTrans;
@@ -87,6 +88,11 @@ namespace PopupSystem
             return result;
         }
 
+        public void UpdateCanvasCamera()
+        {
+            canvas.worldCamera = Camera.main;
+        }
+
         public T CheckInstancePopupPrebab<T>()
         {
             System.Type type = typeof(T);
@@ -120,6 +126,7 @@ namespace PopupSystem
                 }
                 else
                 {
+                    // Debug.Log("Clear all");
                     HideFade();
                 }
 
@@ -193,16 +200,27 @@ namespace PopupSystem
             canvas.sortingOrder = defaultSortingOrder;
         }
 
-        public void OderPopup(BasePopup popup)
+        public BasePopup CurrentOrderPopup = null;
+        public void OderPopup(BasePopup popup, bool canCloseWithOverlay = false, Action showCompletedCallback = null, bool playClickSound = true)
         {
-            if (!hasPopupShowing)
+            if (!hasPopupShowing && CurrentOrderPopup == null)
             {
-                popup.Show();
+                CurrentOrderPopup = popup;
+                popup.Show(canCloseWithOverlay, playClickSound, showCompletedCallback);
             }
             else
             {
+                if (CurrentOrderPopup == popup)
+                {
+                    popup.Show(canCloseWithOverlay, playClickSound, showCompletedCallback);
+                    return;
+                }
+
                 popup.gameObject.SetActive(false);
-                popupQueue.Enqueue(popup);
+                if (!popupQueue.Contains(popup))
+                {
+                    popupQueue.Enqueue(popup);
+                }
             }
         }
 
@@ -263,12 +281,12 @@ namespace PopupSystem
 
         public void DisableFadeBackground()
         {
-            transparent.gameObject.SetActive(false);
+            transparent.color = new Color(0, 0, 0, 0f);
         }
 
         public void EnableFadeBackground()
         {
-            transparent.gameObject.SetActive(true);
+            transparent.color = new Color(0, 0, 0, 0.6f);
         }
 
         #endregion

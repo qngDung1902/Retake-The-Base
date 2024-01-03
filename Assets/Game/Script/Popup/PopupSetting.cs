@@ -101,7 +101,7 @@ public class PopupSetting : MonoBehaviour
     private void OnVibrateButtonClick()
     {
         isVibrateOn = !isVibrateOn;
-        DataManager.USER.SetVibration(isVibrateOn);
+        // DataManager.USER.SetVibration(isVibrateOn);
         Refesh();
     }
 
@@ -109,7 +109,7 @@ public class PopupSetting : MonoBehaviour
     private void OnSoundButtonClick()
     {
         isSoundOn = !isSoundOn;
-        DataManager.USER.SetSound(isSoundOn);
+        // DataManager.USER.SetSound(isSoundOn);
         Refesh();
     }
 

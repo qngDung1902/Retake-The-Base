@@ -30,8 +30,7 @@ namespace PopupSystem
 		private Stack<BasePopup> refStacks;
 		private Action hideCompletedCallback;
 		private Action showCompletedCallback;
-
-		private Action InitAction;
+		private Action queueCompleteCallback;
 
 		#region Unity Methods
 
@@ -84,17 +83,25 @@ namespace PopupSystem
 			PopupManager.Get.ChangeTransparentOrder(mTransform, true);
 		}
 
-		public void Show(bool canCloseWithOverlay = false, Action showCompletedCallback = null)
+		public void Show(bool canCloseWithOverlay = false, bool playClickSound = true, Action showCompletedCallback = null)
 		{
-			InitAction?.Invoke();
-			ShowPopup(showCompletedCallback, canCloseWithOverlay);
+			// if (playClickSound) SoundManager.Get.PlayClickSound();
+
+			ShowPopup(() =>
+			{
+				queueCompleteCallback?.Invoke();
+				showCompletedCallback?.Invoke();
+			}, canCloseWithOverlay);
 		}
 
 		public virtual void Hide(Action hideCompletedCallback = null)
 		{
-			this.hideCompletedCallback = hideCompletedCallback;
 
-			if (!isShowed) return;
+			this.hideCompletedCallback = hideCompletedCallback;
+			if (!isShowed)
+				return;
+
+			// SoundManager.Get.PlayClickSound();
 			isShowed = false;
 			AnimateHide();
 			if (canCloseWithOverlay)
@@ -130,7 +137,7 @@ namespace PopupSystem
 		#endregion
 
 		#region Protected Methods
-		protected void ShowPopup(Action showCompletedCallback = null, bool canCloseWithOverlay = true, Action hideCompletedCallback = null)
+		void ShowPopup(Action showCompletedCallback = null, bool canCloseWithOverlay = true, Action hideCompletedCallback = null)
 		{
 			if (isShowed)
 			{
@@ -148,7 +155,7 @@ namespace PopupSystem
 				this.hideCompletedCallback = hideCompletedCallback;
 			}
 
-			float waitLastPopupHide = 0;
+			float waitLastPopupHide = 0f;
 			this.canCloseWithOverlay = canCloseWithOverlay;
 			isShowed = true;
 
@@ -162,9 +169,14 @@ namespace PopupSystem
 				ChangeSortOrder(refStacks.Peek().SortOrder() + 1);
 
 			if (waitLastPopupHide != 0)
+			{
+				transform.GetChild(0).gameObject.SetActive(false);
 				StartCoroutine(RunMethod(waitLastPopupHide, AnimateShow));
+			}
 			else
+			{
 				AnimateShow();
+			}
 
 			if (this.canCloseWithOverlay)
 			{
@@ -172,9 +184,9 @@ namespace PopupSystem
 			}
 		}
 
-		protected void Queue(Action action)
+		public virtual void Queue(bool canCloseWithOverlay = false, Action showCompletedCallback = null, bool playClickSound = true)
 		{
-			this.InitAction = action;
+			this.queueCompleteCallback = showCompletedCallback;
 			PopupManager.Get.OderPopup(this);
 		}
 
@@ -191,13 +203,13 @@ namespace PopupSystem
 
 		void AnimateShow()
 		{
+			transform.GetChild(0).gameObject.SetActive(true);
 			if (animator != null && showAnimationClip != null)
 			{
 				float showAnimationDuration = GetAnimationClipDuration(showAnimationClip);
 				StartCoroutine(RunMethod(showAnimationDuration, OnShowFinish));
 				animator.Play(showAnimationClip.name);
 				PopupManager.Get.ChangeTransparentOrder(mTransform, true);
-
 			}
 			else
 			{
@@ -225,15 +237,16 @@ namespace PopupSystem
 				Destroy();
 			}
 		}
+
 		void Destroy()
 		{
 			if (refStacks.Contains(this))
 				refStacks.Pop();
 
+			PopupManager.Get.OnPopupClose(this);
 			if (gameObject.activeSelf)
 				DestroyImmediate(gameObject);
 
-			PopupManager.Get.OnPopupClose(this);
 			hideCompletedCallback?.Invoke();
 			PopupManager.Get.ChangeTransparentOrder(mTransform, false);
 			PopupManager.Get.ResetOrder();
