@@ -1,33 +1,43 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
-using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+
+using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerInputMovement : MonoBehaviour
 {
-    [SerializeField] private Vector2 JoystickSize = new Vector2(300, 300);
     [SerializeField] private FloatingJoystick Joystick;
-    public bool DynamicJoystick;
+
+    [SerializeField] private Vector2 JoystickSize = new Vector2(300, 300);
+    [SerializeField] private bool DynamicJoystick;
+
     NavMeshAgent Agent;
+    PlayerAnimator Animator;
 
     private Finger MovementFinger;
     private Vector2 Direction;
+    private float joystickRadius;
+
 
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<PlayerAnimator>();
+
         EnhancedTouchSupport.Enable();
-        ETouch.Touch.onFingerDown += HandleFingerDown;
-        ETouch.Touch.onFingerUp += HandleLoseFinger;
-        ETouch.Touch.onFingerMove += HandleFingerMove;
+        EnhancedTouch.Touch.onFingerDown += HandleFingerDown;
+        EnhancedTouch.Touch.onFingerUp += HandleLoseFinger;
+        EnhancedTouch.Touch.onFingerMove += HandleFingerMove;
+
+        joystickRadius = JoystickSize.x / 2;
     }
 
     private void OnDestroy()
     {
-        ETouch.Touch.onFingerDown -= HandleFingerDown;
-        ETouch.Touch.onFingerUp -= HandleLoseFinger;
-        ETouch.Touch.onFingerMove -= HandleFingerMove;
+        EnhancedTouch.Touch.onFingerDown -= HandleFingerDown;
+        EnhancedTouch.Touch.onFingerUp -= HandleLoseFinger;
+        EnhancedTouch.Touch.onFingerMove -= HandleFingerMove;
         EnhancedTouchSupport.Disable();
     }
 
@@ -38,7 +48,7 @@ public class PlayerInputMovement : MonoBehaviour
         if (MovedFinger == MovementFinger)
         {
             maxMovement = JoystickSize.x * 0.35f;
-            ETouch.Touch currentTouch = MovedFinger.currentTouch;
+            EnhancedTouch.Touch currentTouch = MovedFinger.currentTouch;
 
             if (DynamicJoystick)
             {
@@ -70,6 +80,7 @@ public class PlayerInputMovement : MonoBehaviour
             Joystick.Knob.anchoredPosition = Vector2.zero;
             Joystick.gameObject.SetActive(false);
             Direction = Vector2.zero;
+            Animator.SetAnimation(ANIMATION.IDLE);
         }
     }
 
@@ -82,24 +93,29 @@ public class PlayerInputMovement : MonoBehaviour
             Joystick.gameObject.SetActive(true);
             Joystick.RectTransform.sizeDelta = JoystickSize;
             Joystick.RectTransform.anchoredPosition = ClampStartPosition(TouchedFinger.screenPosition);
+            Animator.SetAnimation(ANIMATION.RUN);
         }
     }
 
     private Vector2 ClampStartPosition(Vector2 StartPosition)
     {
-        if (StartPosition.x < JoystickSize.x / 2)
+
+        if (StartPosition.x < joystickRadius) StartPosition.x = joystickRadius;
+        else if (StartPosition.x > Screen.width - joystickRadius)
         {
-            StartPosition.x = JoystickSize.x / 2;
+            StartPosition.x = Screen.width - joystickRadius;
         }
 
-        if (StartPosition.y < JoystickSize.y / 2)
+
+        if (StartPosition.y < joystickRadius)
         {
-            StartPosition.y = JoystickSize.y / 2;
+            StartPosition.y = joystickRadius;
         }
-        else if (StartPosition.y > Screen.height - JoystickSize.y / 2)
-        {
-            StartPosition.y = Screen.height - JoystickSize.y / 2;
-        }
+        // else
+        // if (StartPosition.y > Screen.height - joystickRadius)
+        // {
+        //     StartPosition.y = Screen.height - joystickRadius;
+        // }
 
         return StartPosition;
     }
@@ -107,6 +123,7 @@ public class PlayerInputMovement : MonoBehaviour
     Vector3 scaledMovement;
     private void Update()
     {
+        if (MovementFinger == null) return;
         scaledMovement = Agent.speed * Time.deltaTime * new Vector3(
             Direction.x,
             0,

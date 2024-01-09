@@ -191,7 +191,7 @@ Canvas:
   m_GameObject: {fileID: 48710411}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -395,7 +395,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 0.099999994, z: 4.9999847}
   m_Center: {x: 2.5, y: -0.049999997, z: 2.4999924}
@@ -2806,7 +2806,9 @@ GameObject:
   - component: {fileID: 4421513172412068}
   - component: {fileID: 95351789259867668}
   - component: {fileID: 95351789259867669}
+  - component: {fileID: 95351789259867672}
   - component: {fileID: 95351789259867670}
+  - component: {fileID: 95351789259867671}
   m_Layer: 0
   m_Name: '[Character]'
   m_TagString: Untagged
@@ -4813,7 +4815,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 0.099999994, z: 4.9999847}
   m_Center: {x: 2.5, y: -0.049999997, z: 2.4999924}
@@ -4873,7 +4875,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 0.099999994, z: 4.9999847}
   m_Center: {x: 2.5, y: -0.049999997, z: 2.4999924}
@@ -4902,7 +4904,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 0.099999994, z: 4.9999847}
   m_Center: {x: 2.5, y: -0.049999997, z: 2.4999924}
@@ -4931,7 +4933,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 0.099999994, z: 4.9999847}
   m_Center: {x: 2.5, y: -0.049999997, z: 2.4999924}
@@ -5011,10 +5013,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ddab414f52cb64a9f7e0d15a61e280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JoystickSize: {x: 224, y: 224}
   Joystick: {fileID: 765769752}
-  DynamicJoystick: 1
-  MovementAmount: {x: 0, y: 0}
+  JoystickSize: {x: 224, y: 224}
+  DynamicJoystick: 0
+--- !u!114 &95351789259867671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938836677612936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef522ca6e3c3abd44bb124698885d085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &95351789259867672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938836677612936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17128c90662a81a489f4e56e4959498f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137225111481349996
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
