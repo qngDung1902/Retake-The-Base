@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CharacterAnimator))]
 public class PlayerInputMovement : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick Joystick;
@@ -13,7 +14,7 @@ public class PlayerInputMovement : MonoBehaviour
     [SerializeField] private bool DynamicJoystick;
 
     NavMeshAgent Agent;
-    PlayerAnimator Animator;
+    CharacterAnimator Animator;
 
     private Finger MovementFinger;
     private Vector2 Direction;
@@ -23,7 +24,7 @@ public class PlayerInputMovement : MonoBehaviour
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
-        Animator = GetComponent<PlayerAnimator>();
+        Animator = GetComponent<CharacterAnimator>();
 
         EnhancedTouchSupport.Enable();
         EnhancedTouch.Touch.onFingerDown += HandleFingerDown;

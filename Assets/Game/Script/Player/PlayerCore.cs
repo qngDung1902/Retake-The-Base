@@ -5,5 +5,5 @@ using UnityEngine;
 public class PlayerCore : MonoBehaviour
 {
     PlayerInputMovement InputMovement;
-    PlayerAnimator Animator;
+    CharacterAnimator Animator;
 }

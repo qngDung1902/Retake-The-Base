@@ -96,7 +96,6 @@ namespace PopupSystem
 
 		public virtual void Hide(Action hideCompletedCallback = null)
 		{
-
 			this.hideCompletedCallback = hideCompletedCallback;
 			if (!isShowed)
 				return;

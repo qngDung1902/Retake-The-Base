@@ -5,64 +5,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using PopupSystem;
 
-public class PopupNointernet : SingletonPopup<PopupNointernet>
+public class PopupNoInternet : SingletonPopup<PopupNoInternet>
 {
-    // [SerializeField] private Button btnOk;
-    // public bool isShow = false;
+    [SerializeField] private Button buttonConfirm;
 
-    public override void Awake()
+    InternetDetector internetDetector;
+    public void Open(InternetDetector detector)
     {
-        base.Awake();
+        buttonConfirm.onClick.AddListener(OnBtnOkClicked);
+        internetDetector = detector;
+        base.Show();
     }
 
-    // void Update()
-    // {
-    //     if (isShow)
-    //     {
-    //         if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork ||
-    //             Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork)
-    //         {
-    //             // Close();
-    //         }
-    //     }
+    public void Close()
+    {
+        buttonConfirm.onClick.RemoveListener(OnBtnOkClicked);
+        internetDetector.IsShowing = false;
+        base.Hide();
+    }
 
-    //     if (Application.internetReachability == NetworkReachability.NotReachable && !isShow)
-    //     {
-    //         Show();
-    //     }
-    // }
-
-    // public void Show(Action onShowComplete = null)
-    // {
-    //     if (isShow) { return; }
-    //     isShow = true;
-
-    //     Show(onShowComplete, canCloseWithOverlay: true);
-    // }
-
-    // public void Hide(Action oncloseComplete = null)
-    // {
-    //     if (!isShow) { return; }
-    //     isShow = false;
-
-    //     base.Hide(oncloseComplete);
-    // }
-
-    private void OnBtnOkClicked()
+    public void OnBtnOkClicked()
     {
         try
         {
 #if UNITY_ANDROID
-            using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-            using (AndroidJavaObject currentActivityObject = unityClass.GetStatic<AndroidJavaObject>("currentActivity"))
+            if (!(Application.internetReachability == NetworkReachability.NotReachable))
             {
-                using (var intentObject = new AndroidJavaObject("android.content.Intent", "android.settings.WIFI_SETTINGS"))
+                Close();
+            }
+            else
+            {
+                using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+                using (AndroidJavaObject currentActivityObject = unityClass.GetStatic<AndroidJavaObject>("currentActivity"))
                 {
-                    currentActivityObject.Call("startActivity", intentObject);
+                    using (var intentObject = new AndroidJavaObject("android.content.Intent", "android.settings.WIFI_SETTINGS"))
+                    {
+                        currentActivityObject.Call("startActivity", intentObject);
+                    }
                 }
             }
 #elif UNITY_IOS
-        // OnHide();
+        Close();
 #endif
         }
         catch (Exception ex)

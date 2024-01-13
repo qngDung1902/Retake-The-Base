@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using PopupSystem;
-using UnityEngine;
 
 public class GameUIManager : MonoSingleton<GameUIManager>
 {
-    private void Awake()
+    private void OnEnable()
     {
         PopupManager.Get.UpdateCanvasCamera();
+        Global.SetScreen(SCREEN.GAME);
+        Global.SetPhase(GAMEPHASE.PLAYING);
     }
 }
