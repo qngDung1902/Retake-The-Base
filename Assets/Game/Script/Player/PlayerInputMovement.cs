@@ -43,8 +43,17 @@ public class PlayerInputMovement : MonoBehaviour
 
     Vector2 knobPosition;
     float maxMovement;
+
+    [Space(8)]
+    [Header("--- Boolean ---")]
+    [SerializeField] bool isMoving;
     private void HandleFingerMove(Finger MovedFinger)
     {
+        if (!isMoving)
+        {
+            isMoving = true;
+            Animator.SetAnimation(ANIMATION.WALK);
+        }
         if (MovedFinger == MovementFinger)
         {
             maxMovement = JoystickSize.x * 0.35f;
@@ -77,6 +86,7 @@ public class PlayerInputMovement : MonoBehaviour
         if (LostFinger == MovementFinger)
         {
             MovementFinger = null;
+            isMoving = false;
             Joystick.Knob.anchoredPosition = Vector2.zero;
             Joystick.gameObject.SetActive(false);
             Direction = Vector2.zero;
@@ -93,7 +103,6 @@ public class PlayerInputMovement : MonoBehaviour
             Joystick.gameObject.SetActive(true);
             Joystick.RectTransform.sizeDelta = JoystickSize;
             Joystick.RectTransform.anchoredPosition = ClampStartPosition(TouchedFinger.screenPosition);
-            Animator.SetAnimation(ANIMATION.RUN);
         }
     }
 
