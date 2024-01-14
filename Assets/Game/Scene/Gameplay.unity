@@ -773,56 +773,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!1 &953471754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953471755}
-  - component: {fileID: 953471756}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &953471755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953471754}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 6.999999}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3867284692223409266}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &953471756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953471754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c44d9a96dfa1240bfc7f69ba1970c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dot: {fileID: 6469460507404408873, guid: 1e33dd389e3729b438b280e907b0b28b, type: 3}
-  DefaultConfig:
-    Width: 4
-    Height: 2
-    Spacing: {x: 1, y: 1}
-  Points: []
 --- !u!1 &1190244067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5603,8 +5553,7 @@ Transform:
   m_LocalPosition: {x: 7.3, y: 0, z: 10.7}
   m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 953471755}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &3872924818499674078
@@ -5707,7 +5656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Soldier: {fileID: 1006851522943257515, guid: a2a14929b9cc90044873498bc3f3c786, type: 3}
-  Grid: {fileID: 953471756}
+  Grid: {fileID: 3886202191277087682}
 --- !u!114 &3886202191277087682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5722,8 +5671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dot: {fileID: 6469460507404408873, guid: 1e33dd389e3729b438b280e907b0b28b, type: 3}
   DefaultConfig:
-    Width: 2
-    Height: 2
+    Width: 0
+    Height: 0
     Spacing: {x: 1, y: 1}
   Points: []
 --- !u!64 &3886202191277087683

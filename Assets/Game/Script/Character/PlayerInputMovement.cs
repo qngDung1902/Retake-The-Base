@@ -6,6 +6,7 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterAnimator))]
+
 public class PlayerInputMovement : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick Joystick;
@@ -50,11 +51,7 @@ public class PlayerInputMovement : MonoBehaviour
     [SerializeField] bool isMoving;
     private void HandleFingerMove(Finger MovedFinger)
     {
-        if (!isMoving)
-        {
-            isMoving = true;
-            Animator.SetAnimation(ANIMATION.WALK);
-        }
+
         if (MovedFinger == MovementFinger)
         {
             maxMovement = JoystickSize.x * 0.35f;
@@ -79,6 +76,12 @@ public class PlayerInputMovement : MonoBehaviour
 
             Direction = knobPosition / maxMovement;
             Joystick.Knob.anchoredPosition = knobPosition;
+
+            if (!isMoving)
+            {
+                isMoving = true;
+                Animator.SetAnimation(ANIMATION.WALK);
+            }
         }
     }
 
@@ -87,11 +90,14 @@ public class PlayerInputMovement : MonoBehaviour
         if (LostFinger == MovementFinger)
         {
             MovementFinger = null;
-            isMoving = false;
             Joystick.Knob.anchoredPosition = Vector2.zero;
             Joystick.gameObject.SetActive(false);
             Direction = Vector2.zero;
-            Animator.SetAnimation(ANIMATION.IDLE);
+            if (isMoving)
+            {
+                isMoving = false;
+                Animator.SetAnimation(ANIMATION.IDLE);
+            }
         }
     }
 
@@ -134,6 +140,7 @@ public class PlayerInputMovement : MonoBehaviour
     private void Update()
     {
         if (MovementFinger == null) return;
+
         scaledMovement = Agent.speed * Time.deltaTime * new Vector3(
             Direction.x,
             0,
