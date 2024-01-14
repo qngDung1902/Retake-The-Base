@@ -20,21 +20,21 @@ public class Unit : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<CharacterAnimator>();
 
-        InitializeState();
+        // InitializeState();
     }
 
     private void Update()
     {
-        StateMachine.CurrentState.LogicUpdate();
+        StateMachine.CurrentState?.LogicUpdate();
     }
 
-    protected virtual void InitializeState()
+    public virtual void InitializeState(bool noStartState = false)
     {
         IdleState = new(this);
         MoveState = new(this);
 
         StateMachine = new StateMachine();
-        StateMachine.Initialize(IdleState);
+        StateMachine.Initialize(noStartState ? null : IdleState);
     }
 
     public void ChangeState(State state)

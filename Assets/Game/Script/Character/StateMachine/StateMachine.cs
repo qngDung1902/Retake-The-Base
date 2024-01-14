@@ -11,7 +11,7 @@ public class StateMachine
     {
         canChangeState = true;
         CurrentState = startState;
-        startState.Enter();
+        startState?.Enter();
     }
 
     public void ChangState(State nextState)

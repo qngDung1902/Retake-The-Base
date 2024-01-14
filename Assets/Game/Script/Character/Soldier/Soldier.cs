@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
-    public Transform d;
+    // public Transform d;
     private void Start()
     {
-        DOVirtual.DelayedCall(2f, () =>
-        {
-            StateMachine.ChangState(MoveState.SetDestination(d.position));
-        });
+        // DOVirtual.DelayedCall(2f, () =>
+        // {
+        //     StateMachine.ChangState(MoveState.SetDestination(d.position));
+        // });
     }
 }

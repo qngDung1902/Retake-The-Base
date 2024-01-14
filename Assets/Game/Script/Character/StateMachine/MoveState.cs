@@ -8,7 +8,7 @@ public class MoveState : UnitState
 {
     public MoveState(Unit unit) : base(unit)
     {
-        Unit.Agent.autoBraking = false;
+
     }
 
     public Vector3 Destination;

@@ -17,7 +17,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (currentState == newState || !animator) return;
 
-        // Debug.Log(newState);
         animator.SetTrigger(newState);
         currentState = newState;
     }
