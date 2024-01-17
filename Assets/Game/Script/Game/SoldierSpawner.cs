@@ -7,6 +7,7 @@ public class SoldierSpawner : MonoBehaviour
 {
     public Soldier Soldier;
     public Grid Grid;
+    public Transform SpawnTransform;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class SoldierSpawner : MonoBehaviour
         foreach (var position in Grid.Points)
         {
             yield return new WaitForSeconds(1f);
-            var soldier = Instantiate(Soldier, transform.position, Quaternion.identity);
+            var soldier = Instantiate(Soldier, SpawnTransform.position, Soldier.transform.rotation);
             soldier.InitializeState(true);
             soldier.ChangeState(soldier.MoveState.SetDestination(position));
         }
