@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using System.Dynamic;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterAnimator))]
@@ -15,7 +16,7 @@ public class Unit : MonoBehaviour
     public IdleState IdleState;
     public MoveState MoveState;
 
-    private void Awake()
+    public virtual void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<CharacterAnimator>();
@@ -25,7 +26,7 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        StateMachine.CurrentState?.LogicUpdate();
+        StateMachine?.CurrentState?.LogicUpdate();
     }
 
     public virtual void InitializeState(bool noStartState = false)
@@ -40,6 +41,11 @@ public class Unit : MonoBehaviour
     public void ChangeState(State state)
     {
         StateMachine.ChangState(state);
+    }
+
+    public bool IsInState(State state)
+    {
+        return StateMachine.IsInState(state);
     }
 
     public bool ReachedDestinationOrGaveUp()

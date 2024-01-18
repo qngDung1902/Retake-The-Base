@@ -5,7 +5,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(CharacterAnimator))]
+[RequireComponent(typeof(Player))]
 
 public class PlayerInputMovement : MonoBehaviour
 {
@@ -14,8 +14,9 @@ public class PlayerInputMovement : MonoBehaviour
     [SerializeField] private Vector2 JoystickSize = new Vector2(300, 300);
     [SerializeField] private bool DynamicJoystick;
 
+    Player Player;
     NavMeshAgent Agent;
-    CharacterAnimator Animator;
+    // CharacterAnimator Animator;
 
     private Finger MovementFinger;
     private Vector2 Direction;
@@ -24,8 +25,9 @@ public class PlayerInputMovement : MonoBehaviour
 
     private void Awake()
     {
+        Player = GetComponent<Player>();
         Agent = GetComponent<NavMeshAgent>();
-        Animator = GetComponent<CharacterAnimator>();
+        // Animator = GetComponent<CharacterAnimator>();
 
         EnhancedTouchSupport.Enable();
         EnhancedTouch.Touch.onFingerDown += HandleFingerDown;
@@ -80,7 +82,8 @@ public class PlayerInputMovement : MonoBehaviour
             if (!isMoving)
             {
                 isMoving = true;
-                Animator.SetAnimation(ANIMATION.WALK);
+                // Animator.SetAnimation(ANIMATION.WALK);
+                Player.ChangeState(Player.MoveState);
             }
         }
     }
@@ -96,7 +99,8 @@ public class PlayerInputMovement : MonoBehaviour
             if (isMoving)
             {
                 isMoving = false;
-                Animator.SetAnimation(ANIMATION.IDLE);
+                Player.ChangeState(Player.IdleState);
+                // Animator.SetAnimation(ANIMATION.IDLE);
             }
         }
     }
