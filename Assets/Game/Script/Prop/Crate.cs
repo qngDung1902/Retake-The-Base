@@ -13,7 +13,7 @@ public class Crate : MonoBehaviour, IInteractable
     //     t.localPosition = Vector2.zero;
     // }
 
-    public void Interact()
+    public void Interact(Unit unit)
     {
         if (!isOpen)
         {

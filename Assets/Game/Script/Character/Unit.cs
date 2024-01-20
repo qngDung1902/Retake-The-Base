@@ -38,6 +38,11 @@ public class Unit : MonoBehaviour
         StateMachine.Initialize(noStartState ? null : IdleState);
     }
 
+    public virtual void Interact()
+    {
+
+    }
+
     public void ChangeState(State state)
     {
         StateMachine.ChangState(state);

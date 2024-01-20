@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    Player Player;
+    private void Awake()
+    {
+        Player = GetComponent<Player>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IInteractable>().Interact();
+        // Player.ChangeState();
+        other.GetComponent<IInteractable>().Interact(Player);
     }
 }
