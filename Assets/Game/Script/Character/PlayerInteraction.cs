@@ -10,9 +10,15 @@ public class PlayerInteraction : MonoBehaviour
         Player = GetComponent<Player>();
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        // Player.ChangeState();
-        other.GetComponent<IInteractable>().Interact(Player);
-    }
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     // Player.ChangeState();
+    //     Player.ChangeState(Player.PickUpState);
+    //     other.GetComponent<IInteractable>().Interact(Player);
+    // }
+
+    // private void OnTriggerExit(Collider other)
+    // {
+
+    // }
 }

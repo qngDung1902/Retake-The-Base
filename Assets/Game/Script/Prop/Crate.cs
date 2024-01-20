@@ -1,41 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
+using UnityEngine.UI;
+using DG.Tweening;
 
-public class Crate : MonoBehaviour, IInteractable
+public class Crate : MonoBehaviour/* , IInteractable */
 {
-    public Transform t;
-    bool isOpen;
+    public CanvasGroup CanvasGroup;
+    public Slider Progress;
+    public SphereCollider Collider;
 
     // private void Awake()
     // {
-    //     t.localPosition = Vector2.zero;
+    //     CanvasGroup.alpha = 0f;
     // }
 
-    public void Interact(Unit unit)
+    Tween tween1, tween2;
+    // bool opened;
+    // bool isOpen;
+    // public void Interact(Unit unit)
+    // {
+    //     if (!isOpen)
+    //     {
+    //         Open();
+    //     }
+    // }
+
+    // public void StopInteract()
+    // {
+    //     if (isOpen)
+    //     {
+    //         Stop();
+    //     }
+    // }
+
+    // void Open()
+    // {
+    //     isOpen = true;
+    // }
+
+    // void Stop()
+    // {
+    //     isOpen = false;
+    // }
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (!isOpen)
+        if (other.CompareTag("Player"))
         {
-            Open();
+            EnableInteractableButton(true);
+            Progress.value = 0f;
+            tween2 = Progress.DOValue(Progress.maxValue, 2f).SetEase(Ease.Linear).OnComplete(Open);
         }
     }
 
-    public void StopInteract()
+    private void OnTriggerExit(Collider other)
     {
-        if (isOpen)
+        if (other.CompareTag("Player"))
         {
-            Stop();
+            EnableInteractableButton(false);
+            tween2?.Kill();
         }
     }
 
     void Open()
     {
-        isOpen = true;
+        // opened = true;
+        Debug.Log($"[{name}] Open!");
+        Collider.enabled = false;
+        EnableInteractableButton(false);
+        GameManager.Get.Money += Random.Range(50, 200);
     }
 
-    void Stop()
+    void EnableInteractableButton(bool value)
     {
-        isOpen = false;
+        tween1?.Kill();
+        tween1 = CanvasGroup.DOFade(value ? 1f : 0, 0.2f);
     }
 }

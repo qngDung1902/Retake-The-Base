@@ -3,45 +3,21 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    // public Player Player;
-    // public LevelController LevelController;
+    int money;
+    public int Money
+    {
+        get => money;
+        set
+        {
+            money += value;
+            GameUIManager.Get.UpdateMoney(money);
+        }
+    }
 
-    // public void OnInit()
-    // {
-    //     Player.OnInit();
-    // }
+    public bool EnoughMoney(int value) => Money >= value;
 
-    // public void StartLevel()
-    // {
-    //     Player.OnLevelStarted();
-    //     LevelController.OnLevelStart();
-    // }
-
-    // public void LoadCurrentLevel()
-    // {
-    //     LoadLevel(DataManager.LEVEL.CurrentLevelId);
-    //     Player.OnLevelLoaded();
-    // }
-
-    // void LoadLevel(int level)
-    // {
-    //     LevelController.OnLevelLoad(level);
-    // }
-
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         PopupNointernet.Get.Open(null, true);
-    //     }
-    // }
-
-    // public void OnWin()
-    // {
-    //     DataManager.LEVEL.PassLevel();
-    // }
-
-    // public void OnLoss()
-    // {
-    // }
+    private void Awake()
+    {
+        Money = 0;
+    }
 }
