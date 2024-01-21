@@ -1,3 +1,4 @@
+using System;
 using PopupSystem;
 using UnityEngine;
 
@@ -9,12 +10,21 @@ public class GameManager : MonoSingleton<GameManager>
         get => money;
         set
         {
-            money += value;
-            GameUIManager.Get.UpdateMoney(money);
+            money = value;
+            GameUIManager.Get.UpdateMoney();
         }
     }
 
     public bool EnoughMoney(int value) => Money >= value;
+    public void Pay(int value, Action onDone)
+    {
+        if (Money >= value)
+        {
+            // Debug.Log($"{Money} - {value}");
+            Money -= value;
+            onDone?.Invoke();
+        }
+    }
 
     private void Awake()
     {

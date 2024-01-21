@@ -34,10 +34,7 @@ public class SoldierSpawner : MonoBehaviour
         if (built) return;
         if (other.CompareTag("Player"))
         {
-            if (GameManager.Get.EnoughMoney(MoneyCost))
-            {
-                Build();
-            }
+            GameManager.Get.Pay(MoneyCost, Build);
         }
     }
 

@@ -13,8 +13,8 @@ public class GameUIManager : MonoSingleton<GameUIManager>
         Global.SetPhase(GAMEPHASE.PLAYING);
     }
 
-    public void UpdateMoney(int value)
+    public void UpdateMoney()
     {
-        MoneyText.text = $"{value}";
+        MoneyText.text = $"{GameManager.Get.Money}";
     }
 }

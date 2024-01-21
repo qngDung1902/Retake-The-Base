@@ -509,7 +509,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1322030171523082487}
   m_Lens:
-    FieldOfView: 70
+    FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1557,7 +1557,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1875,7 +1875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fcbfc15e5952944b2fa8ee4e5c5fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoneyCost: 192
+  MoneyCost: 50
   BuildTime: 6
   Soldier: {fileID: 1006851522943257515, guid: a2a14929b9cc90044873498bc3f3c786, type: 3}
   Grid: {fileID: 460109777}
