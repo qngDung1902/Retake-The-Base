@@ -74,7 +74,7 @@ public class SoldierSpawner : MonoBehaviour
         foreach (var position in Grid.Points)
         {
             yield return new WaitForSeconds(1f);
-            var soldier = Instantiate(Soldier, SpawnTransform.position, Soldier.transform.rotation);
+            var soldier = Instantiate(Soldier, SpawnTransform.position, Soldier.transform.rotation, WorldSpace.Transform);
             soldier.InitializeState(true);
             soldier.ChangeState(soldier.MoveState.SetDestination(position));
         }

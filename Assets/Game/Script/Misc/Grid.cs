@@ -35,7 +35,10 @@ public class Grid : MonoBehaviour
                 z = j * config.Spacing.y - (config.Height * config.Spacing.y - config.Spacing.y) / 2;
 
                 Points.Add(new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z));
-                Instantiate(dot, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.Euler(new Vector2(90, 0)), transform);
+                if (dot)
+                {
+                    Instantiate(dot, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.Euler(new Vector2(90, 0)), transform);
+                }
             }
         }
     }
