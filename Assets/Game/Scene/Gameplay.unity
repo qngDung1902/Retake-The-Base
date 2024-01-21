@@ -1370,6 +1370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020877492}
   - component: {fileID: 1020877493}
+  - component: {fileID: 1020877494}
   m_Layer: 0
   m_Name: Zombie Horde
   m_TagString: Untagged
@@ -1420,6 +1421,27 @@ MonoBehaviour:
   - {fileID: 4300012, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
   Zombie: {fileID: 8132655365301274835, guid: dab340f882340634baa09c5e21e035c0, type: 3}
   Grid: {fileID: 699820506}
+--- !u!135 &1020877494
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020877491}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1039665516
 GameObject:
   m_ObjectHideFlags: 0
@@ -5284,6 +5306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Zombie]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 58844011248678194, guid: dab340f882340634baa09c5e21e035c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7471388223488062730, guid: dab340f882340634baa09c5e21e035c0,
         type: 3}

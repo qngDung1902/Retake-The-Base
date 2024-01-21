@@ -6,11 +6,7 @@ using UnityEngine.Experimental.AI;
 
 public class MoveState : UnitState
 {
-    public MoveState(Unit unit) : base(unit)
-    {
-
-    }
-
+    public MoveState(Unit unit) : base(unit) { }
     public Vector3 Destination;
 
 
@@ -31,12 +27,5 @@ public class MoveState : UnitState
     }
 }
 
-public static class MoveStateExtensions
-{
-    public static MoveState SetDestination(this MoveState moveState, Vector3 destination)
-    {
-        moveState.Destination = destination;
-        return moveState;
-    }
-}
+
 

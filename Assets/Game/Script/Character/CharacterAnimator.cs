@@ -20,4 +20,9 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetTrigger(newState);
         currentState = newState;
     }
+
+    public void SetAnimatorSpeed(float speed)
+    {
+        animator.speed = speed;
+    }
 }
