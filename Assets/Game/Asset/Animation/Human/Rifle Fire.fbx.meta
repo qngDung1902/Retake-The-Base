@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f92ee715311f9594aad4b7e38d62c9a2
+guid: 374c2edb5cb0c834d978ae9c5b292ce4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,19 +33,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: game_character_melee_attack
+      name: game_character_rifle_fire
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1

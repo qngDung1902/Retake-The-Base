@@ -27,6 +27,7 @@ public class SoldierSpawner : MonoBehaviour
     {
         CostText.text = $"{MoneyCost}";
         // StartCoroutine(SpawningSolider());
+        CompleteBuild();
     }
 
     private void OnTriggerEnter(Collider other)

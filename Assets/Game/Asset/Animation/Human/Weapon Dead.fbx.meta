@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f92ee715311f9594aad4b7e38d62c9a2
+guid: 88f8fb0881e9d8b4ca736f8c466aaf99
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: game_character_melee_attack
+      name: mixamo.com
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 92
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
