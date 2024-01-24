@@ -19,7 +19,7 @@ public class Zombie : Unit
     public override void InitializeState(bool noStartState = false)
     {
         base.InitializeState(noStartState);
-        MeleeAttackState = new ZombieMeleeAttackState(this);
+        AttackState = new ZombieMeleeAttackState(this);
     }
 
     void RandomStats()

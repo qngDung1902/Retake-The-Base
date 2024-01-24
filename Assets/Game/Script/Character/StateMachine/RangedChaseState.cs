@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseState : UnitState
+public class RangedChaseState : ChaseState
 {
-    public Unit ChasedTarget;
-    protected string animationName;
-    public ChaseState(Unit unit) : base(unit)
+    public RangedChaseState(Unit unit) : base(unit)
     {
-        animationName = ANIMATION.WALK;
+        animationName = ANIMATION.RIFLE_CHASE;
     }
 
     public override void Enter()
     {
         base.Enter();
-        Unit.Animator.SetAnimation(animationName);
-        // Unit.Agent.isStopped = false;
+        Unit.Agent.stoppingDistance = 8f;
     }
 
     public override void Exit()
     {
         base.Exit();
         ChasedTarget = null;
-        // Unit.Agent.isStopped = true;
     }
 
     public override void LogicUpdate()

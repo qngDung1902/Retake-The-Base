@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
     public IdleState IdleState;
     public MoveState MoveState;
     public ChaseState ChaseState;
-    public MeleeAttackState MeleeAttackState;
+    public AttackState AttackState;
 
     public virtual void Awake()
     {
@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
         IdleState = new(this);
         MoveState = new(this);
         ChaseState = new(this);
-        MeleeAttackState = new(this);
+        AttackState = new(this);
 
         StateMachine = new StateMachine();
         StateMachine.Initialize(noStartState ? null : IdleState);

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ZombieHorde : MonoBehaviour
 {
+    public static SortedList<int, ZombieHorde> All = new();
+
+    public int Id;
     public List<Mesh> ZombieMeshes;
     public Zombie Zombie;
     public Grid Grid;
@@ -22,6 +25,9 @@ public class ZombieHorde : MonoBehaviour
             zombie.SetHorde(this, spawnPosition);
             Zombies.Add(zombie);
         }
+
+        // Debug.Log(All.Count);
+        All.Add(Id, this);
     }
 
     Dictionary<Collider, Unit> allies = new();

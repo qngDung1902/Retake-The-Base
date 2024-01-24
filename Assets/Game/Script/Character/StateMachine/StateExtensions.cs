@@ -15,4 +15,10 @@ public static class StateExtensions
         chaseState.ChasedTarget = target;
         return chaseState;
     }
+
+    public static RangedChaseState SetTarget(this RangedChaseState chaseState, Unit target)
+    {
+        chaseState.ChasedTarget = target;
+        return chaseState;
+    }
 }

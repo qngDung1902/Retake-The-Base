@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PopupSystem;
 using UnityEngine;
 
@@ -30,4 +31,5 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Money = 0;
     }
+
 }

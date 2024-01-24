@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieMeleeAttackState : MeleeAttackState
+public class ZombieMeleeAttackState : AttackState
 {
     Zombie Zombie;
     public ZombieMeleeAttackState(Unit unit) : base(unit)
