@@ -21,13 +21,15 @@ public class RangedChaseState : ChaseState
         ChasedTarget = null;
     }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        Unit.Agent.SetDestination(ChasedTarget.transform.position);
-        if (Unit.ReachedDestinationOrGaveUp())
-        {
-            Unit.ChangeState(Unit.AttackState);
-        }
-    }
+    // public override void LogicUpdate()
+    // {
+    //     if (ChasedTarget)
+    //     {
+    //         Unit.Agent.SetDestination(ChasedTarget.transform.position);
+    //     }
+    //     if (Unit.ReachedDestinationOrGaveUp())
+    //     {
+    //         Unit.ChangeState(Unit.AttackState);
+    //     }
+    // }
 }

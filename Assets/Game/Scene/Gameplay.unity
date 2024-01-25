@@ -989,6 +989,7 @@ MonoBehaviour:
   - {fileID: 4300012, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
   Zombie: {fileID: 8132655365301274835, guid: dab340f882340634baa09c5e21e035c0, type: 3}
   Grid: {fileID: 377621640}
+  Zombies: []
 --- !u!1001 &631965837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1838,6 +1839,7 @@ MonoBehaviour:
   - {fileID: 4300012, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
   Zombie: {fileID: 8132655365301274835, guid: dab340f882340634baa09c5e21e035c0, type: 3}
   Grid: {fileID: 699820506}
+  Zombies: []
 --- !u!135 &1020877494
 SphereCollider:
   m_ObjectHideFlags: 0

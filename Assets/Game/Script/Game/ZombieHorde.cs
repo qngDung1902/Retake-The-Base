@@ -12,7 +12,7 @@ public class ZombieHorde : MonoBehaviour
     public Zombie Zombie;
     public Grid Grid;
 
-    List<Zombie> Zombies = new();
+    [HideInInspector] public List<Zombie> Zombies = new();
 
     private void Awake()
     {

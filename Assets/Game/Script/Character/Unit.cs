@@ -49,6 +49,7 @@ public class Unit : MonoBehaviour
 
     public void ChangeState(State state)
     {
+        // Debug.Log($"[{name}]{state}");
         StateMachine.ChangState(state);
     }
 
