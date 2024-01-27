@@ -7,6 +7,9 @@ public class RangedSoldier : Soldier
     public override void Awake()
     {
         base.Awake();
+    }
+    private void Start()
+    {
         RandomStats();
     }
 

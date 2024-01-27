@@ -6,19 +6,37 @@ using UnityEngine;
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator animator;
-    private string currentState;
+    private string currentAnimation = string.Empty;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void SetAnimation(string newState)
+    public void SetAnimation(string animation)
     {
-        if (currentState == newState || !animator) return;
+        if (currentAnimation == animation || !animator) return;
 
-        animator.SetTrigger(newState);
-        currentState = newState;
+        if (currentAnimation != string.Empty)
+        {
+            animator.ResetTrigger(currentAnimation);
+        }
+        animator.SetTrigger(animation);
+        currentAnimation = animation;
+    }
+
+    public void SetRandomAnimation(string animation)
+    {
+        if (currentAnimation == animation || !animator) return;
+        if (currentAnimation != string.Empty)
+        {
+            animator.ResetTrigger(currentAnimation);
+        }
+
+        SetAnimatorSpeed(1f);
+        animator.SetFloat(animation, Random.Range(0, 2));
+        Debug.Log(animator.GetFloat(animation));
+        currentAnimation = animation;
     }
 
     public void SetAnimatorSpeed(float speed)

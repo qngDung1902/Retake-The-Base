@@ -8,7 +8,7 @@ public class Player : Unit
     public override void Awake()
     {
         base.Awake();
-        InitializeState(true);
+        InitializeState();
     }
 
     public override void InitializeState(bool noStartState = false)

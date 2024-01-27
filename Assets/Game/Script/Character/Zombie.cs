@@ -5,15 +5,19 @@ using UnityEngine;
 public class Zombie : Unit
 {
     public SkinnedMeshRenderer MeshRenderer;
-
     [HideInInspector] public ZombieHorde Horde;
     [HideInInspector] public Vector3 SpawnPosition;
 
     public override void Awake()
     {
         base.Awake();
-        RandomStats();
         InitializeState();
+    }
+
+    private void Start()
+    {
+        RandomStats();
+        ChangeState(DeadState);
     }
 
     public override void InitializeState(bool noStartState = false)

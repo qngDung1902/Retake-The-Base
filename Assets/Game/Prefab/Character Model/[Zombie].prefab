@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7471388223488062730}
   - component: {fileID: 1774931570709151647}
   - component: {fileID: 1597385567393159391}
-  - component: {fileID: 5183369428113562157}
   - component: {fileID: 8132655365301274835}
+  - component: {fileID: 5183369428113562157}
+  - component: {fileID: 370897900557758625}
   m_Layer: 0
   m_Name: '[Zombie]'
   m_TagString: Enemy
@@ -81,18 +82,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
---- !u!114 &5183369428113562157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58844011248678194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef522ca6e3c3abd44bb124698885d085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8132655365301274835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,9 +97,36 @@ MonoBehaviour:
   StateName: 
   Agent: {fileID: 0}
   Animator: {fileID: 0}
+  Stats: {fileID: 0}
   MeshRenderer: {fileID: 671668703382432700}
   Horde: {fileID: 0}
   SpawnPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &5183369428113562157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58844011248678194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef522ca6e3c3abd44bb124698885d085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &370897900557758625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58844011248678194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be310b0108856ea46bdf50178dbe2f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Atk: 10
+  Hp: 10
 --- !u!1 &252372390640245370
 GameObject:
   m_ObjectHideFlags: 0

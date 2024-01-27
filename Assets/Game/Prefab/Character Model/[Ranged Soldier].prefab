@@ -2525,9 +2525,10 @@ GameObject:
   - component: {fileID: 5287140711837622358}
   - component: {fileID: 7314336208071388433}
   - component: {fileID: 947915739334371701}
-  - component: {fileID: 5809372990372729107}
   - component: {fileID: 370832957881437666}
   - component: {fileID: 5352095094149100370}
+  - component: {fileID: 5809372990372729107}
+  - component: {fileID: 6300540584678399966}
   m_Layer: 0
   m_Name: '[Ranged Soldier]'
   m_TagString: Ally
@@ -2598,18 +2599,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
---- !u!114 &5809372990372729107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7557430130716251627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef522ca6e3c3abd44bb124698885d085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &370832957881437666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2641,6 +2630,33 @@ MonoBehaviour:
   StateName: 
   Agent: {fileID: 0}
   Animator: {fileID: 0}
+  Stats: {fileID: 0}
+--- !u!114 &5809372990372729107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557430130716251627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef522ca6e3c3abd44bb124698885d085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6300540584678399966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557430130716251627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be310b0108856ea46bdf50178dbe2f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Atk: 10
+  Hp: 100
 --- !u!1 &7617871332164211944
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class ChaseState : UnitState
     protected string animationName;
     public ChaseState(Unit unit) : base(unit)
     {
-
         animationName = ANIMATION.WALK;
     }
 

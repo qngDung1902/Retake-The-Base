@@ -16,13 +16,4 @@ public class AttackState : UnitState
         base.Enter();
         Unit.Animator.SetAnimation(animationName);
     }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        if (CurrentTarget)
-        {
-            Unit.transform.LookAt(CurrentTarget.transform.position);
-        }
-    }
 }

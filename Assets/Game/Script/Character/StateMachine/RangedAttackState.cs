@@ -9,9 +9,12 @@ public class RangedAttackState : AttackState
         animationName = ANIMATION.RIFLE_FIRE;
     }
 
-    // public override void LogicUpdate()
-    // {
-    //     base.LogicUpdate();
-
-    // }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (CurrentTarget)
+        {
+            Unit.transform.LookAt(CurrentTarget.transform.position);
+        }
+    }
 }
