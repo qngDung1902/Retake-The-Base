@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RangedSoldier : Soldier
 {
-    public override void Awake()
-    {
-        base.Awake();
-    }
+    // public override void Awake()
+    // {
+    //     base.Awake();
+    // }
     private void Start()
     {
         RandomStats();

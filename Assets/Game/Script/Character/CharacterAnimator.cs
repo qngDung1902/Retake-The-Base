@@ -35,7 +35,6 @@ public class CharacterAnimator : MonoBehaviour
 
         SetAnimatorSpeed(1f);
         animator.SetFloat(animation, Random.Range(0, 2));
-        Debug.Log(animator.GetFloat(animation));
         currentAnimation = animation;
     }
 

@@ -31,14 +31,17 @@ public class AttackOrder : MonoBehaviour
     void Attack()
     {
         Debug.Log($"[Game] Attack!");
-        var hordeTarget = ZombieHorde.All[0];
-        var targets = hordeTarget.Zombies.PickRandom(hordeTarget.Zombies.Count / 2).ToArray();
-        Zombie target;
+        // var hordeTarget = ZombieHorde.All[0];
+        // var targets = hordeTarget.Zombies.PickRandom(hordeTarget.Zombies.Count / 2).ToArray();
+        // Zombie target;
 
         foreach (var soldier in Soldier.All)
         {
-            target = targets[Random.Range(0, targets.Length)]; ;
-            soldier.ChangeState(soldier.ChaseState.SetTarget(target));
+            // target = targets[Random.Range(0, targets.Length)]; ;/
+            if (!soldier.IsInFight)
+            {
+                soldier.TargetingClosestTarget();
+            }
         }
     }
 }

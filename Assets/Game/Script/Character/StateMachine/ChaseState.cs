@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaseState : UnitState
 {
-    public Unit ChasedTarget;
+    public Unit ChaseTarget;
     protected string animationName;
     public ChaseState(Unit unit) : base(unit)
     {
@@ -14,6 +14,8 @@ public class ChaseState : UnitState
     public override void Enter()
     {
         base.Enter();
+        Unit.Animator.SetAnimation(animationName);
+        Unit.chaseTarget = ChaseTarget;
         // Debug.Log($"{Unit.Agent.remainingDistance}|{Unit.Agent.stoppingDistance}");
         // if (Unit.ReachedDestinationOrGaveUp())
         // {
@@ -21,7 +23,6 @@ public class ChaseState : UnitState
         // }
         // else
         // {
-        Unit.Animator.SetAnimation(animationName);
         // }
         // Unit.Agent.isStopped = false;
     }
@@ -29,17 +30,30 @@ public class ChaseState : UnitState
     public override void Exit()
     {
         base.Exit();
-        ChasedTarget = null;
+        ChaseTarget = null;
         // Unit.Agent.isStopped = true;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Unit.Agent.SetDestination(ChasedTarget.transform.position);
+        // if (ChaseTarget == null)
+        // {
+        //     Unit.TargetingClosestTarget();
+        //     return;
+        // }
+
+        if (!ChaseTarget || ChaseTarget.IsDead)
+        {
+            Unit.ChangeState(Unit.IdleState);
+            Unit.TargetingClosestTarget();
+            return;
+        }
+
+        Unit.Agent.SetDestination(ChaseTarget.transform.position);
         if (Unit.ReachedDestinationOrGaveUp())
         {
-            Unit.ChangeState(Unit.AttackState.SetTarget(ChasedTarget));
+            Unit.ChangeState(Unit.AttackState.SetTarget(ChaseTarget));
         }
     }
 }

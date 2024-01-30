@@ -923,7 +923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &519335924
 Transform:
   m_ObjectHideFlags: 0
@@ -5534,6 +5534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  MeshRenderer: {fileID: 0}
+  Shadow: {fileID: 0}
   Agent: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
@@ -9967,6 +9969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  MeshRenderer: {fileID: 1702979229749143457}
+  Shadow: {fileID: 1842934053}
   Agent: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}

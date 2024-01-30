@@ -15,11 +15,11 @@ public class RangedChaseState : ChaseState
         Unit.Agent.stoppingDistance = 8f;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-        ChasedTarget = null;
-    }
+    // public override void Exit()
+    // {
+    //     base.Exit();
+    //     ChasedTarget = null;
+    // }
 
     // public override void LogicUpdate()
     // {

@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
-using System.Dynamic;
+using System.Linq;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterAnimator), typeof(Stats))]
 public class Unit : MonoBehaviour
 {
+    [Header("--- DEBUG ---")]
     public string StateName;
-    protected StateMachine StateMachine;
+    public Unit chaseTarget;
 
+    [Space(8)]
+    [Header("--- REFERENCES ---")]
+    public SkinnedMeshRenderer MeshRenderer;
+    public GameObject Shadow;
+
+    protected StateMachine StateMachine;
     [HideInInspector] public NavMeshAgent Agent;
     [HideInInspector] public CharacterAnimator Animator;
     [HideInInspector] public Stats Stats;
@@ -20,6 +27,9 @@ public class Unit : MonoBehaviour
     public ChaseState ChaseState;
     public AttackState AttackState;
     public DeadState DeadState;
+
+    public bool IsInFight => (IsInState(ChaseState) || IsInState(AttackState));
+    public bool IsDead => IsInState(DeadState);
 
     public virtual void Awake()
     {
@@ -32,7 +42,7 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (IsInState(DeadState)) return;
+        if (IsDead) return;
         StateMachine?.CurrentState?.LogicUpdate();
     }
 
@@ -50,7 +60,7 @@ public class Unit : MonoBehaviour
 
     public void ChangeState(State state)
     {
-        if (IsInState(DeadState)) return;
+        if (IsDead) return;
         StateMachine.ChangState(state);
     }
 
@@ -59,10 +69,41 @@ public class Unit : MonoBehaviour
         return StateMachine.IsInState(state);
     }
 
+    public virtual void Dead()
+    {
+        Animator.SetRandomAnimation(ANIMATION.DEAD);
+        Shadow.SetActive(false);
+        Agent.enabled = false;
+    }
+
     public bool Attack()
     {
-        if (IsInState(DeadState)) return false;
-        return AttackState.CurrentTarget.Stats.Damaged(Stats.Atk);
+        if (IsDead) return false;
+        bool killTarget = AttackState.CurrentTarget.Stats.Damaged(Stats.Atk);
+        if (killTarget)
+        {
+            TargetingClosestTarget();
+        }
+        return killTarget;
+    }
+
+    public void TargetingClosestTarget()
+    {
+        if (ZombieHorde.All.Count == 0)
+        {
+            ChangeState(IdleState);
+            return;
+        }
+
+        var closestTarget = ZombieHorde.All.First().Value.Zombies.OrderBy(n => (n.transform.position - transform.position).sqrMagnitude).First();
+        if (closestTarget)
+        {
+            ChangeState(ChaseState.SetTarget(closestTarget));
+        }
+        else
+        {
+            ChangeState(IdleState);
+        }
     }
 
     public bool ReachedDestinationOrGaveUp()

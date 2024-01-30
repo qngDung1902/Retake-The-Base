@@ -8,6 +8,6 @@ public class DeadState : UnitState
     public override void Enter()
     {
         base.Enter();
-        Unit.Animator.SetRandomAnimation(ANIMATION.DEAD);
+        Unit.Dead();
     }
 }

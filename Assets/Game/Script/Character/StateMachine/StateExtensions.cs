@@ -12,7 +12,7 @@ public static class StateExtensions
 
     public static ChaseState SetTarget(this ChaseState chaseState, Unit target)
     {
-        chaseState.ChasedTarget = target;
+        chaseState.ChaseTarget = target;
         return chaseState;
     }
 

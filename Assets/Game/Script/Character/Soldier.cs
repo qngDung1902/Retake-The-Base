@@ -12,5 +12,7 @@ public class Soldier : Unit
         All.Add(this);
     }
 
+
+
     public static List<Soldier> All = new();
 }

@@ -12,7 +12,9 @@ public class ZombieHorde : MonoBehaviour
     public Zombie Zombie;
     public Grid Grid;
 
+
     [HideInInspector] public List<Zombie> Zombies = new();
+    public bool Clear => Zombies.Count == 0;
 
     private void Awake()
     {
@@ -40,7 +42,7 @@ public class ZombieHorde : MonoBehaviour
             {
                 if (!zombie.IsInState(zombie.ChaseState))
                 {
-                    TargetingAndRetarget(zombie);
+                    TargetingClosestTarget(zombie);
                 }
             }
         }
@@ -54,17 +56,17 @@ public class ZombieHorde : MonoBehaviour
             allies.Remove(other);
             foreach (var zombie in Zombies)
             {
-                if (zombie.ChaseState.ChasedTarget == unit)
+                if (zombie.ChaseState.ChaseTarget == unit)
                 {
-                    TargetingAndRetarget(zombie);
+                    TargetingClosestTarget(zombie);
                 }
             }
         }
     }
 
-    public void TargetingAndRetarget(Zombie zombie)
+    public void TargetingClosestTarget(Zombie zombie)
     {
-        var closestUnit = allies.OrderBy(e => (e.Value.transform.position - zombie.transform.position).sqrMagnitude).FirstOrDefault();
+        var closestUnit = allies.OrderBy(n => (n.Value.transform.position - zombie.transform.position).sqrMagnitude).FirstOrDefault();
         if (closestUnit.Value)
         {
             zombie.ChangeState(zombie.ChaseState.SetTarget(closestUnit.Value));
@@ -76,4 +78,12 @@ public class ZombieHorde : MonoBehaviour
     }
 
 
+    public void UpdateZombieCount(Zombie zombie)
+    {
+        Zombies.Remove(zombie);
+        if (Clear)
+        {
+            All.Remove(Id);
+        }
+    }
 }

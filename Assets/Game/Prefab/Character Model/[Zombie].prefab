@@ -95,10 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  MeshRenderer: {fileID: 671668703382432700}
+  Shadow: {fileID: 360593775845444684}
   Agent: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
-  MeshRenderer: {fileID: 671668703382432700}
   Horde: {fileID: 0}
   SpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5183369428113562157
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Atk: 10
-  Hp: 10
+  Hp: 100
 --- !u!1 &252372390640245370
 GameObject:
   m_ObjectHideFlags: 0
