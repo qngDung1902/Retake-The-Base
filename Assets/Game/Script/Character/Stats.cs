@@ -14,8 +14,9 @@ public class Stats : MonoBehaviour
         unit = GetComponent<Unit>();
     }
 
-    public bool Damaged(float value)
+    public bool Damaged(Unit source, float value)
     {
+        if (unit.IsDead) return true;
         Hp -= value;
         if (Hp < 0)
         {
@@ -24,6 +25,7 @@ public class Stats : MonoBehaviour
             return true;
         }
 
+        unit.Damaged(source);
         return false;
     }
 }

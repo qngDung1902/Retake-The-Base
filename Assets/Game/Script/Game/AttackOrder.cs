@@ -40,7 +40,7 @@ public class AttackOrder : MonoBehaviour
             // target = targets[Random.Range(0, targets.Length)]; ;/
             if (!soldier.IsInFight)
             {
-                soldier.TargetingClosestTarget();
+                soldier.TargetClosestZombie();
             }
         }
     }

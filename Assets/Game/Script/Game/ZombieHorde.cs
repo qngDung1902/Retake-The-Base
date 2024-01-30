@@ -22,7 +22,7 @@ public class ZombieHorde : MonoBehaviour
         foreach (var position in Grid.Points)
         {
             var spawnPosition = position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-            var zombie = Instantiate(Zombie, spawnPosition, Quaternion.Euler(0, Random.Range(-90, 90), 0), WorldSpace.Transform);
+            var zombie = Instantiate(Zombie, spawnPosition, Quaternion.Euler(0, Random.Range(-90, 90), 0), transform);
             zombie.BakeMesh(ZombieMeshes[Random.Range(0, ZombieMeshes.Count)]);
             zombie.SetHorde(this, spawnPosition);
             Zombies.Add(zombie);
@@ -66,15 +66,10 @@ public class ZombieHorde : MonoBehaviour
 
     public void TargetingClosestTarget(Zombie zombie)
     {
+        // if (zombie.IsInFight) return;
+
         var closestUnit = allies.OrderBy(n => (n.Value.transform.position - zombie.transform.position).sqrMagnitude).FirstOrDefault();
-        if (closestUnit.Value)
-        {
-            zombie.ChangeState(zombie.ChaseState.SetTarget(closestUnit.Value));
-        }
-        else
-        {
-            zombie.ChangeState(zombie.MoveState.SetDestination(zombie.SpawnPosition));
-        }
+        zombie.ChangeState(closestUnit.Value ? zombie.ChaseState.SetTarget(closestUnit.Value) : zombie.MoveState.SetDestination(zombie.SpawnPosition));
     }
 
 

@@ -2529,6 +2529,8 @@ GameObject:
   - component: {fileID: 5352095094149100370}
   - component: {fileID: 5809372990372729107}
   - component: {fileID: 6300540584678399966}
+  - component: {fileID: 15308503641620020}
+  - component: {fileID: 7534495017410690314}
   m_Layer: 0
   m_Name: '[Ranged Soldier]'
   m_TagString: Ally
@@ -2628,6 +2630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  chaseTarget: {fileID: 0}
   MeshRenderer: {fileID: 3136458868094322479}
   Shadow: {fileID: 7861488564316855556}
   Agent: {fileID: 0}
@@ -2657,8 +2660,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be310b0108856ea46bdf50178dbe2f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Atk: 10
-  Hp: 100
+  Atk: 1
+  Hp: 20
+--- !u!135 &15308503641620020
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557430130716251627}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.38
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7534495017410690314
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557430130716251627}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7617871332164211944
 GameObject:
   m_ObjectHideFlags: 0

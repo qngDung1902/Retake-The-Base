@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedChaseState : ChaseState
+public class RangedChaseState : SoldierChaseState
 {
     public RangedChaseState(Unit unit) : base(unit)
     {

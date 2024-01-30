@@ -36,20 +36,6 @@ public class ChaseState : UnitState
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
-        // if (ChaseTarget == null)
-        // {
-        //     Unit.TargetingClosestTarget();
-        //     return;
-        // }
-
-        if (!ChaseTarget || ChaseTarget.IsDead)
-        {
-            Unit.ChangeState(Unit.IdleState);
-            Unit.TargetingClosestTarget();
-            return;
-        }
-
         Unit.Agent.SetDestination(ChaseTarget.transform.position);
         if (Unit.ReachedDestinationOrGaveUp())
         {

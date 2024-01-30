@@ -12,6 +12,7 @@ public static class StateExtensions
 
     public static ChaseState SetTarget(this ChaseState chaseState, Unit target)
     {
+        Debug.Log(target.name);
         chaseState.ChaseTarget = target;
         return chaseState;
     }

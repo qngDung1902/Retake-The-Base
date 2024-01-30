@@ -7,12 +7,15 @@ public class ZombieMeleeAttackState : AttackState
     Zombie Zombie;
     public ZombieMeleeAttackState(Unit unit) : base(unit)
     {
-        Zombie = Unit as Zombie;
+        Zombie = unit as Zombie;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        Zombie.WaitToRetarget();
-    }
+    // public override void LogicUpdate()
+    // {
+    //     base.LogicUpdate();
+    //     if (CurrentTarget)
+    //     {
+    //         Unit.transform.LookAt(CurrentTarget.transform.position);
+    //     }
+    // }
 }

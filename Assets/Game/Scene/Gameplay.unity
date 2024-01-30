@@ -769,7 +769,7 @@ MonoBehaviour:
   dot: {fileID: 6469460507404408873, guid: 1e33dd389e3729b438b280e907b0b28b, type: 3}
   DefaultConfig:
     Width: 2
-    Height: 2
+    Height: 3
     Spacing: {x: 1, y: 1}
   Points: []
 --- !u!1 &480439006
@@ -1859,7 +1859,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6.75
+  m_Radius: 11.71
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1084646539
 GameObject:
@@ -5534,6 +5534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  chaseTarget: {fileID: 0}
   MeshRenderer: {fileID: 0}
   Shadow: {fileID: 0}
   Agent: {fileID: 0}
@@ -9911,7 +9912,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9969,6 +9970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  chaseTarget: {fileID: 0}
   MeshRenderer: {fileID: 1702979229749143457}
   Shadow: {fileID: 1842934053}
   Agent: {fileID: 0}

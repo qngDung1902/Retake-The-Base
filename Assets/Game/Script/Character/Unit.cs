@@ -71,40 +71,15 @@ public class Unit : MonoBehaviour
 
     public virtual void Dead()
     {
-        Animator.SetRandomAnimation(ANIMATION.DEAD);
         Shadow.SetActive(false);
         Agent.enabled = false;
     }
 
-    public bool Attack()
-    {
-        if (IsDead) return false;
-        bool killTarget = AttackState.CurrentTarget.Stats.Damaged(Stats.Atk);
-        if (killTarget)
-        {
-            TargetingClosestTarget();
-        }
-        return killTarget;
-    }
+    public virtual void Damaged(Unit source) { }
+    public virtual void AttackEvent() { }
+    public virtual void AttackCompleteEvent() { }
 
-    public void TargetingClosestTarget()
-    {
-        if (ZombieHorde.All.Count == 0)
-        {
-            ChangeState(IdleState);
-            return;
-        }
 
-        var closestTarget = ZombieHorde.All.First().Value.Zombies.OrderBy(n => (n.transform.position - transform.position).sqrMagnitude).First();
-        if (closestTarget)
-        {
-            ChangeState(ChaseState.SetTarget(closestTarget));
-        }
-        else
-        {
-            ChangeState(IdleState);
-        }
-    }
 
     public bool ReachedDestinationOrGaveUp()
     {
