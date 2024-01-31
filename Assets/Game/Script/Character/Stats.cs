@@ -18,7 +18,7 @@ public class Stats : MonoBehaviour
     {
         if (unit.IsDead) return true;
         Hp -= value;
-        if (Hp < 0)
+        if (Hp <= 0)
         {
             Hp = 0;
             unit.Dead();

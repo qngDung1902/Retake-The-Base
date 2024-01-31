@@ -58,7 +58,7 @@ public class Soldier : Unit
             return;
         }
 
-        var closestTarget = ZombieHorde.All.First().Value.Zombies.OrderBy(n => (n.transform.position - transform.position).sqrMagnitude).First();
+        var closestTarget = ZombieHorde.All.First().Value.Zombies.OrderBy(n => (n.transform.position - transform.position).sqrMagnitude).FirstOrDefault();
         ChangeState(closestTarget ? ChaseState.SetTarget(closestTarget) : IdleState);
     }
     public static List<Soldier> All = new();

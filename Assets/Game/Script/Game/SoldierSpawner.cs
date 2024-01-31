@@ -21,13 +21,14 @@ public class SoldierSpawner : MonoBehaviour
     public TMP_Text CostText;
     public Slider Progress;
 
+    Dictionary<int, Soldier> Soldiers = new();
     bool built;
 
     private void Awake()
     {
         CostText.text = $"{MoneyCost}";
         // StartCoroutine(SpawningSolider());
-        CompleteBuild();
+        // CompleteBuild();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,15 +39,6 @@ public class SoldierSpawner : MonoBehaviour
             GameManager.Get.Pay(MoneyCost, Build);
         }
     }
-
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     if (upgraded) return;
-    //     if (other.CompareTag("Player"))
-    //     {
-    //         Debug.Log(2);
-    //     }
-    // }
 
     void Build()
     {
@@ -62,19 +54,46 @@ public class SoldierSpawner : MonoBehaviour
         DetectArea.SetActive(false);
         Tent.SetActive(true);
         Grid.Initialize();
+        for (int i = 0; i < Grid.Points.Count; i++)
+        {
+            Soldiers.Add(i, null);
+        }
+        Debug.Log(Soldiers.Count);
         StartCoroutine(SpawningSolider());
     }
 
+    int? GetSpawnPositionIndex()
+    {
+        for (int i = 0; i < Soldiers.Count; i++)
+        {
+            if (Soldiers[i] == null || Soldiers[i].IsDead)
+            {
+                return i;
+            }
+        }
+
+        return null;
+    }
+
+    int? index;
     IEnumerator SpawningSolider()
     {
-        yield return new WaitForSeconds(2f);
-
-        foreach (var position in Grid.Points)
+        while (true)
         {
             yield return new WaitForSeconds(1f);
-            var soldier = Instantiate(Soldier, SpawnTransform.position, Soldier.transform.rotation, WorldSpace.Transform);
-            soldier.InitializeState(true);
-            soldier.ChangeState(soldier.MoveState.SetDestination(position));
+            index = GetSpawnPositionIndex();
+            if (index != null)
+            {
+                Soldiers[(int)index] = SpawnSoldier(Grid.Points[(int)index]);
+            }
         }
+    }
+
+    Soldier SpawnSoldier(Vector3 position)
+    {
+        var soldier = Instantiate(Soldier, SpawnTransform.position, Soldier.transform.rotation, WorldSpace.Transform);
+        soldier.InitializeState(true);
+        soldier.ChangeState(soldier.MoveState.SetDestination(position));
+        return soldier;
     }
 }
