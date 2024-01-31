@@ -1016,8 +1016,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateName: 
+  chaseTarget: {fileID: 0}
   MeshRenderer: {fileID: 8246729725275785804}
   Shadow: {fileID: 585345210354281598}
+  KeyAttackAnimation: Melee Attack
   Agent: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}

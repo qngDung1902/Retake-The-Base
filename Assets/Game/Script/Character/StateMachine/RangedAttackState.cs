@@ -6,7 +6,7 @@ public class RangedAttackState : AttackState
 {
     public RangedAttackState(Unit unit) : base(unit)
     {
-        animationName = ANIMATION.RIFLE_FIRE;
+        // animationName = unit ;
     }
 
     public override void LogicUpdate()

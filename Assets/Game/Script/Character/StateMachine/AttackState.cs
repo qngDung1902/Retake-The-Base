@@ -9,7 +9,7 @@ public class AttackState : UnitState
 
     public AttackState(Unit unit) : base(unit)
     {
-        animationName = ANIMATION.MELEE_ATTACK;
+        animationName = unit.KeyAttackAnimation;
     }
     public override void Enter()
     {

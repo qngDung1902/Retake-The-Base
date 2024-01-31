@@ -17,6 +17,11 @@ public class Unit : MonoBehaviour
     public SkinnedMeshRenderer MeshRenderer;
     public GameObject Shadow;
 
+    [Space(8)]
+    [Header("--- KEY ANIMATIONS ---")]
+    public string KeyAttackAnimation;
+
+
     protected StateMachine StateMachine;
     [HideInInspector] public NavMeshAgent Agent;
     [HideInInspector] public CharacterAnimator Animator;
