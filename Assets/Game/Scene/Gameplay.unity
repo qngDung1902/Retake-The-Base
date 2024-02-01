@@ -3048,6 +3048,12 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1190244071}
+    - target: {fileID: 1027889043320445814, guid: 40cc299262af7664a90bb2a3967dbf43,
+        type: 3}
+      propertyPath: Soldier
+      value: 
+      objectReference: {fileID: 5352095094149100370, guid: e516063bd84da24408a9a14e262d5d04,
+        type: 3}
     - target: {fileID: 2682743623305430448, guid: 40cc299262af7664a90bb2a3967dbf43,
         type: 3}
       propertyPath: m_AnchorMax.y

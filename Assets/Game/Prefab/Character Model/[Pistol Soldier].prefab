@@ -226,7 +226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6874499795085538570}
-  m_LocalEulerAnglesHint: {x: 37.987, y: -25.1, z: 66.694}
+  m_LocalEulerAnglesHint: {x: 79.486, y: -17.79, z: 72.225}
 --- !u!1 &1065569743788881263
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 7598139527675644396}
   - component: {fileID: 1148737519772214583}
   m_Layer: 0
-  m_Name: Vfx
+  m_Name: Gun Impact Vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -364,7 +364,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
   randomSeed: 0
@@ -374,7 +374,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -409,8 +409,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -509,8 +509,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.099999994
+      scalar: 0.6
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6543,7 +6543,7 @@ Transform:
   - {fileID: 6417506475784283874}
   - {fileID: 5616506281163676064}
   m_Father: {fileID: 6045943881603942052}
-  m_LocalEulerAnglesHint: {x: -2.575, y: 85.312, z: -2.819}
+  m_LocalEulerAnglesHint: {x: -62.693, y: 57.2, z: 28.888}
 --- !u!33 &6846109551735013052
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6959,6 +6959,7 @@ MonoBehaviour:
   Agent: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
+  gunImpactVfx: {fileID: 7598139527675644396}
 --- !u!114 &5809372990372729107
 MonoBehaviour:
   m_ObjectHideFlags: 0

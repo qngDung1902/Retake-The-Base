@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Soldier : Unit
 {
+    [SerializeField] ParticleSystem gunImpactVfx;
     public override void Awake()
     {
         base.Awake();
@@ -32,6 +33,7 @@ public class Soldier : Unit
     public override void AttackEvent()
     {
         if (IsDead) return;
+        gunImpactVfx.Play();
         if (!AttackState.CurrentTarget)
         {
             TargetClosestZombie();
