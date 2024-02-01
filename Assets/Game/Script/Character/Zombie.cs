@@ -93,8 +93,8 @@ public class Zombie : Unit
 
     void RandomStats()
     {
-        Agent.speed = Random.Range(1f, 4f);
-        Agent.angularSpeed = Random.Range(80, 200);
+        Agent.speed = Random.Range(2f, 4f);
+        Agent.angularSpeed = Random.Range(160, 200);
         Animator.SetAnimatorSpeed(Agent.speed / 3f);
     }
 
