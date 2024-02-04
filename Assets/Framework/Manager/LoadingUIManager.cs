@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 public class LoadingUIManager : MonoBehaviour
 {
-    [Range(0f, 6f)] public float loadTime;
+    [Range(0f, 6f)][SerializeField] float loadTime;
+    [SerializeField] TMP_Text loadingText;
 
     [Header("---UI REFERENCES---")]
     public Slider loadingVisual;
@@ -17,7 +18,29 @@ public class LoadingUIManager : MonoBehaviour
     bool isAnimated;
     void Awake()
     {
+        loadingText.text = "Loading";
         Global.SetScreen(SCREEN.LOADING);
+    }
+
+    float t = 0f;
+    int c = 0;
+    private void Update()
+    {
+        t += Time.deltaTime;
+        while (t >= 0.4f)
+        {
+            t = 0f;
+            if (c > 3)
+            {
+                c = 0;
+                loadingText.text = "Loading";
+            }
+            else
+            {
+                loadingText.text += ".";
+            }
+            c++;
+        }
     }
 
     private void Start()
@@ -42,8 +65,9 @@ public class LoadingUIManager : MonoBehaviour
         sq.Append(loadingVisual.DOValue(loadingVisual.maxValue, loadTime * 0.4f).SetEase(Ease.OutSine));
         // sq.AppendInterval(1f);
         sq.AppendCallback(OnDone);
-
     }
+
+
 
     void OnDone() => isAnimated = true;
 
