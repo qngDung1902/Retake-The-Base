@@ -44,7 +44,7 @@ public class SoldierSpawner : MonoBehaviour
     {
         Debug.Log($"[[{name}] Building...");
         built = true;
-        CostText.text = "Progess...";
+        CostText.text = "Progress...";
         Progress.DOValue(Progress.maxValue, BuildTime).SetEase(Ease.Linear).OnComplete(CompleteBuild);
     }
 

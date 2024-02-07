@@ -78,6 +78,12 @@ public class Unit : MonoBehaviour
     {
         Shadow.SetActive(false);
         Agent.enabled = false;
+        Invoke(nameof(Clear), 5f);
+    }
+
+    void Clear()
+    {
+        Destroy(gameObject);
     }
 
     public virtual void Damaged(Unit source) { }
